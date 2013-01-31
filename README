@@ -1,0 +1,6 @@
+Redmine gitolite script
+=======================
+
+
+This script consumes redmine group membership from the redmine api and 
+generates gitolite configs.
