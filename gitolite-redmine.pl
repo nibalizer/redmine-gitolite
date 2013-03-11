@@ -44,7 +44,7 @@ sub returnjson
   my $curl_response;
   # Looking at the results...
   if ($retcode == 0) {
-          print("Transfer went ok\n");
+    #print("Transfer went ok\n");
           my $response_code = $curl->getinfo(CURLINFO_HTTP_CODE);
           # judge result and next action based on $response_code
           #print("Received response: $response_body\n");
@@ -62,9 +62,20 @@ my $projects_list_url = $config->{'redmine_url'}."/projects.json\n";
 my($projects_list) = &returnjson($projects_list_url);
 
 foreach my $project (@{$projects_list->{'projects'}}){
-  print $project->{'identifier'}.": ".$project->{'id'}."\n";
+  #print $project->{'identifier'}.": ".$project->{'id'}."\n";
+  my $prefix = "/projects/".$project->{'id'};
+  my $members_list_url = $config->{'redmine_url'}."$prefix/memberships.json\n";
+  my($members_list) = &returnjson($members_list_url);
+  #print Dumper $members_list;
+  foreach my $member (@{$members_list->{'memberships'}}){
+    if (exists $member->{'user'}) {
+      print $member->{'project'}->{'name'}." ";
+      print $member->{'roles'}[0]->{'name'}." ";
+      print $member->{'user'}->{'name'}."\n";
+    }
+  }
+  #exit 0;
+
 
 }
-
-
 
