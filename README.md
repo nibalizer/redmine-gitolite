@@ -1,28 +1,28 @@
-Redmine gitolite script
+Redmine Gitolite script
 =======================
 
+This script consumes Redmine group membership from the Redmine api and generates gitolite configs.
 
-This script consumes redmine group membership from the redmine api and 
-generates gitolite configs.
+Dependencies
+============
 
+Requires perl, WWW::Curl::Easy, YAML, JSON, Makefile.pl (or equivalent) coming soon
 
-Depenencies
-===========
+Ubuntu Precise
+--------------
 
-Requires perl, WWW::Curl::Easy, YAML, JSON. Makefile.pl(or 
-equivalent) coming soon
+    sudo apt-get install libwww-curl-perl libyaml libjson-perl
 
 Usage
 =====
 
 Copy the config.yaml.example to config.yaml and tune to your needs
 
-Create a redmine api key by following the instructions [here](http://www.redmine.org/projects/redmine/wiki/Rest_api "Redmine API Documentation")
+Create a Redmine api key by following the instructions [here](http://www.redmine.org/projects/redmine/wiki/Rest_api "Redmine API Documentation")
 
 The script will print to standard out (write to file coming soon)
 
     ./gitolite-remine.pl > gitolite.conf
-
 
 
 Tests
